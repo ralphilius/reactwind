@@ -1,0 +1,9 @@
+{
+   "private": true,
+   "name": "reactwind",
+   "workspaces": [
+     "site",
+     "packages/**"
+   ],
+   "scripts": {}
+}
