@@ -4,4 +4,4 @@ import {
   SizingProps 
 } from '../utils/types';
 
-export type DivisionProps = SizingProps | PaddingProps | MarginProps | JustifyXProps | AlignXProps | PlaceXProps;
+export type ReactwindProps = SizingProps | PaddingProps | MarginProps | JustifyXProps | AlignXProps | PlaceXProps;

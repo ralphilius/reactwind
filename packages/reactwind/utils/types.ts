@@ -1,12 +1,12 @@
 import { theme } from '../stubs/defaultConfig';
-import boxAlignment from '../stubs/box-alignment';
+import boxAlignment from '../definition/box-alignment';
 
 export type ResponsiveArray<T> = Array<T | null>
 export type ResponsiveObject<T> = { [P in keyof Breakpoints]: T }
 export type ResponsiveValue<T> = T | ResponsiveArray<T> | ResponsiveObject<T>
 
 export type Breakpoints = keyof (typeof theme.screens);
-export type Spacing = keyof (typeof theme.spacing);
+export type Spacing = keyof (typeof theme.spacing) | 'auto';
 export type FontSize = keyof (typeof theme.fontSize);
 export type FontWeight = keyof (typeof theme.fontWeight);
 
