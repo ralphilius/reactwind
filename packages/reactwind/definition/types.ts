@@ -18,7 +18,7 @@ type JustifyContent = typeof boxAlignment.justifyContent.values[number];
 type JustifyItems = typeof boxAlignment.justifyItems.values[number];
 type JustifySelf = typeof boxAlignment.justifySelf.values[number];
 export type JustifyXProps = {
-  justify?: ResponsiveValue<JustifyContent>;
+  justifyContent?: ResponsiveValue<JustifyContent>;
   justifyItems?: ResponsiveValue<JustifyItems>;
   justifySelf?: ResponsiveValue<JustifySelf>;
 }
