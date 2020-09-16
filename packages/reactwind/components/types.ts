@@ -1,7 +1,8 @@
 import { 
   JustifyXProps, AlignXProps, PlaceXProps, 
   PaddingProps, MarginProps, 
-  SizingProps 
-} from '../utils/types';
+  SizingProps, 
+  SpaceBetweenProps
+} from '../definition/types';
 
-export type ReactwindProps = SizingProps | PaddingProps | MarginProps | JustifyXProps | AlignXProps | PlaceXProps;
+export type ReactwindProps = JustifyXProps | AlignXProps | PlaceXProps | PaddingProps | MarginProps | SpaceBetweenProps | SizingProps;

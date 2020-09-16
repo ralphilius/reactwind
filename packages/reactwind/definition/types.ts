@@ -1,5 +1,6 @@
 import { theme } from '../stubs/defaultConfig';
-import boxAlignment from '../definition/box-alignment';
+import boxAlignment from './box-alignment';
+import spacing from './spacing';
 
 export type ResponsiveArray<T> = Array<T | null>
 export type ResponsiveObject<T> = { [P in keyof Breakpoints]: T }
@@ -7,6 +8,8 @@ export type ResponsiveValue<T> = T | ResponsiveArray<T> | ResponsiveObject<T>
 
 export type Breakpoints = keyof (typeof theme.screens);
 export type Spacing = keyof (typeof theme.spacing) | 'auto';
+export type SpaceNegative = keyof (typeof spacing.negativeSpacing);
+export type SpaceBetween = keyof (typeof theme.spacing) | 'reverse' | SpaceNegative;
 export type FontSize = keyof (typeof theme.fontSize);
 export type FontWeight = keyof (typeof theme.fontWeight);
 
@@ -48,6 +51,11 @@ export type PaddingProps = {
 const marginKeys = ['m', 'mx', 'my', 'mt', 'mr', 'mb', 'ml'] as const;
 export type MarginProps = {
   [key in typeof marginKeys[number]]: ResponsiveValue<Spacing>;
+}
+
+export type SpaceBetweenProps = {
+  spaceX: ResponsiveValue<SpaceBetween>;
+  spaceY: ResponsiveValue<SpaceBetween>;
 }
 
 // Sizing
