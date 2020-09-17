@@ -1,6 +1,7 @@
 import { theme } from '../stubs/defaultConfig';
 import boxAlignment from './box-alignment';
 import spacing from './spacing';
+import typography from './typography';
 
 export type ResponsiveArray<T> = Array<T | null>
 export type ResponsiveObject<T> = { [P in Breakpoints]?: T }
@@ -57,9 +58,9 @@ export type SpaceBetweenProps = {
 }
 
 // Sizing
-export type Width = keyof (typeof theme.width) | Spacing;
-export type MinWidth = keyof (typeof theme.minWidth);
-export type MaxWidth = keyof (typeof theme.maxWidth) | 'screen-sm' | 'screen-md' | 'screen-lg' | 'screen-xl';
+export type Width = keyof (typeof theme.width) | Spacing | string;
+export type MinWidth = keyof (typeof theme.minWidth) | string;
+export type MaxWidth = keyof (typeof theme.maxWidth) | 'screen-sm' | 'screen-md' | 'screen-lg' | 'screen-xl' | string;
 export type Height = keyof (typeof theme.height) | Spacing;
 export type MinHeight = keyof (typeof theme.minHeight);
 export type MaxHeight = keyof (typeof theme.maxHeight) | 'screen-sm' | 'screen-md' | 'screen-lg' | 'screen-xl';
@@ -71,4 +72,20 @@ export type SizingProps = {
   minH?: ResponsiveValue<MinHeight>
   maxH?: ResponsiveValue<MaxHeight>;
   
+}
+
+type FontFamily = keyof typeof theme.fontFamily;
+type FontSize = keyof typeof theme.fontSize;
+type FontWeight = keyof typeof theme.fontWeight;
+type TextAlign = typeof typography.textAlign.values[number];
+type LineHeight = keyof typeof theme.lineHeight
+type FontProps = FontFamily;
+type TextProps = FontSize;
+
+export type TypographyProps = {
+  font?: ResponsiveValue<FontProps>;
+  fontWeight?: ResponsiveValue<FontWeight>;
+  text?: ResponsiveValue<TextProps>;
+  textAlign?: ResponsiveValue<TextAlign>;
+  leading?: ResponsiveValue<LineHeight>;
 }

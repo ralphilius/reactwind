@@ -2,7 +2,8 @@ import {
   JustifyXProps, AlignXProps, PlaceXProps, 
   PaddingProps, MarginProps, 
   SizingProps, 
-  SpaceBetweenProps
+  SpaceBetweenProps,
+  TypographyProps
 } from '../definition/types';
 import { ReactType } from 'react';
 
@@ -10,6 +11,7 @@ export type ReactwindProps =
   JustifyXProps & AlignXProps & PlaceXProps 
   & PaddingProps & MarginProps & SpaceBetweenProps 
   & SizingProps 
+  & TypographyProps
   & AsProps & ClassnameProps
 
 type AsProps = {
