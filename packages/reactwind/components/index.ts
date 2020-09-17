@@ -1,1 +1,3 @@
-export * from './division';
+import Fluid from './fluid';
+
+export default Fluid;
