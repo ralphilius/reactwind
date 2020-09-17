@@ -1,11 +1,10 @@
 import { ReactwindProps } from "./types";
 import propsToClassNames from "../utils/propsToClassNames";
 
-type DivisionProps = ReactwindProps & {className?: string}
-export const Division: React.FC<DivisionProps> = (props: DivisionProps) => {
-  let [classNames, rest]: [string, DivisionProps] = propsToClassNames(props);
-  
+export const Division: React.FC<ReactwindProps> = (props) => {
+  const [classNames, rest]: [string, ReactwindProps] = propsToClassNames(props);
+  const { as: Component = 'div' } = props;
   return (
-    <div {...rest} className={classNames.concat(" ", props.className)} ></div>
+    <Component {...rest} className={classNames.concat(" ", props.className)}>{props.children}</Component>
   )
 }

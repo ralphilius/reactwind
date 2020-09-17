@@ -10,3 +10,12 @@ export type ReactwindProps =
   JustifyXProps & AlignXProps & PlaceXProps 
   & PaddingProps & MarginProps & SpaceBetweenProps 
   & SizingProps 
+  & AsProps & ClassnameProps
+
+type AsProps = {
+  as?: ReactType
+};
+
+type ClassnameProps = {
+  className?: string
+}
