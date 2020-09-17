@@ -27,35 +27,35 @@ type AlignContent = typeof boxAlignment.alignContent.values[number];
 type AlignItems = typeof boxAlignment.alignItems.values[number];
 type AlignSelf = typeof boxAlignment.alignSelf.values[number];
 export type AlignXProps = {
-  content: ResponsiveValue<AlignContent>;
-  items: ResponsiveValue<AlignItems>;
-  self: ResponsiveValue<AlignSelf>;
+  content?: ResponsiveValue<AlignContent>;
+  items?: ResponsiveValue<AlignItems>;
+  self?: ResponsiveValue<AlignSelf>;
 }
 
 type PlaceContent = typeof boxAlignment.placeContent.values[number];
 type PlaceItems = typeof boxAlignment.placeItems.values[number];
 type PlaceSelf = typeof boxAlignment.placeSelf.values[number];
 export type PlaceXProps = {
-  placeContent: ResponsiveValue<PlaceContent>;
-  placeItems: ResponsiveValue<PlaceItems>;
-  placeSelf: ResponsiveValue<PlaceSelf>;
+  placeContent?: ResponsiveValue<PlaceContent>;
+  placeItems?: ResponsiveValue<PlaceItems>;
+  placeSelf?: ResponsiveValue<PlaceSelf>;
 }
 
 
 // Spacing
 const paddingKeys = ['p', 'px', 'py', 'pt', 'pr', 'pb', 'pl'] as const;
 export type PaddingProps = {
-  [key in typeof paddingKeys[number]]: ResponsiveValue<Spacing>;
+  [key in typeof paddingKeys[number]]?: ResponsiveValue<Spacing>;
 }
 
 const marginKeys = ['m', 'mx', 'my', 'mt', 'mr', 'mb', 'ml'] as const;
 export type MarginProps = {
-  [key in typeof marginKeys[number]]: ResponsiveValue<Spacing>;
+  [key in typeof marginKeys[number]]?: ResponsiveValue<Spacing>;
 }
 
 export type SpaceBetweenProps = {
-  spaceX: ResponsiveValue<SpaceBetween>;
-  spaceY: ResponsiveValue<SpaceBetween>;
+  spaceX?: ResponsiveValue<SpaceBetween>;
+  spaceY?: ResponsiveValue<SpaceBetween>;
 }
 
 // Sizing
@@ -66,11 +66,11 @@ export type Height = keyof (typeof theme.height) | Spacing;
 export type MinHeight = keyof (typeof theme.minHeight);
 export type MaxHeight = keyof (typeof theme.maxHeight) | 'screen-sm' | 'screen-md' | 'screen-lg' | 'screen-xl';
 export type SizingProps = {
-  w: ResponsiveValue<Width>;
-  minW: ResponsiveValue<MinWidth>
-  maxW: ResponsiveValue<MaxWidth>;
-  h: ResponsiveValue<Height>;
-  minH: ResponsiveValue<MinHeight>
-  maxH: ResponsiveValue<MaxHeight>;
+  w?: ResponsiveValue<Width>;
+  minW?: ResponsiveValue<MinWidth>
+  maxW?: ResponsiveValue<MaxWidth>;
+  h?: ResponsiveValue<Height>;
+  minH?: ResponsiveValue<MinHeight>
+  maxH?: ResponsiveValue<MaxHeight>;
   
 }
