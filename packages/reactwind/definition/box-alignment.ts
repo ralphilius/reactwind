@@ -23,6 +23,14 @@ export default {
     key: "self",
     values: ['auto', 'start', 'end', 'center', 'stretch'] as const
   },
+  items: {
+    key: "items",
+    values: ['auto', 'start', 'end', 'center', 'stretch'] as const
+  },
+  self: {
+    key: "self",
+    values: ['auto', 'start', 'end', 'center', 'stretch'] as const
+  },
   placeContent: {
     key: "place-content",
     values: ['start', 'end', 'center', 'between', 'evenly', 'around', 'stretch'] as const
