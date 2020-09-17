@@ -3,15 +3,13 @@ import boxAlignment from './box-alignment';
 import spacing from './spacing';
 
 export type ResponsiveArray<T> = Array<T | null>
-export type ResponsiveObject<T> = { [P in keyof Breakpoints]: T }
+export type ResponsiveObject<T> = { [P in Breakpoints]?: T }
 export type ResponsiveValue<T> = T | ResponsiveArray<T> | ResponsiveObject<T>
 
 export type Breakpoints = keyof (typeof theme.screens);
 export type Spacing = keyof (typeof theme.spacing) | 'auto';
 export type SpaceNegative = keyof (typeof spacing.negativeSpacing);
 export type SpaceBetween = keyof (typeof theme.spacing) | 'reverse' | SpaceNegative;
-export type FontSize = keyof (typeof theme.fontSize);
-export type FontWeight = keyof (typeof theme.fontWeight);
 
 // Box Alignment
 type JustifyContent = typeof boxAlignment.justifyContent.values[number];
