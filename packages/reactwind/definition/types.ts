@@ -82,9 +82,12 @@ type LineHeight = keyof typeof theme.lineHeight
 type LetterSpacing = keyof typeof theme.letterSpacing;
 type Colors =  string;
 
+type ListStyleType = keyof typeof theme.listStyleType;
+type ListStylePosition = keyof typeof theme.listStylePosition;
+type ListProps = ListStyleType | ListStylePosition
 
 type FontProps = FontFamily;
-type TextProps = FontSize | TextAlign | Colors;
+type TextProps = FontSize | TextAlign;
 
 export type TypographyProps = {
   font?: ResponsiveValue<FontProps>;
@@ -101,4 +104,8 @@ export type TypographyProps = {
 
   tracking?: ResponsiveValue<LetterSpacing>;
   letterSpacing?: ResponsiveValue<LetterSpacing>;
+
+  list?: ResponsiveValue<ListProps[]>;
+  listStyleType?: ResponsiveValue<ListStyleType>;
+  listStylePosition?: ResponsiveValue<ListStylePosition>;
 }

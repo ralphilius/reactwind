@@ -15,5 +15,14 @@ export default {
   },
   letterSpacing: {
     key: 'tracking'
+  },
+  list: {
+    key: 'list'
+  },
+  listStyleType: {
+    key: 'list'
+  },
+  listStylePosition: {
+    key: 'list'
   }
 }

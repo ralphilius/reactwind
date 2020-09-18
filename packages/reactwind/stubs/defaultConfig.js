@@ -323,6 +323,10 @@ module.exports = {
       disc: 'disc',
       decimal: 'decimal',
     },
+    listStylePosition: {
+      inside: 'inside',
+      outside: 'outside'
+    },
     margin: (theme, { negative }) => ({
       auto: 'auto',
       ...theme('spacing'),
