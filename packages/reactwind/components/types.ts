@@ -12,7 +12,7 @@ export type ReactwindProps =
   & PaddingProps & MarginProps & SpaceBetweenProps 
   & SizingProps 
   & TypographyProps
-  & AsProps & ClassnameProps
+  & AsProps & ClassnameProps & React.HTMLProps<HTMLImageElement | HTMLLinkElement>
 
 type AsProps = {
   as?: ReactType
