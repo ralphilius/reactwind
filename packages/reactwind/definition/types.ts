@@ -7,7 +7,7 @@ export type ResponsiveArray<T> = Array<T | null>
 export type ResponsiveObject<T> = { [P in Breakpoints]?: T }
 export type ResponsiveValue<T> = T | ResponsiveArray<T> | ResponsiveObject<T>
 
-export type Breakpoints = keyof (typeof theme.screens);
+export type Breakpoints = keyof (typeof theme.screens) | 'base';
 export type Spacing = keyof (typeof theme.spacing) | 'auto';
 export type SpaceNegative = keyof (typeof spacing.negativeSpacing);
 export type SpaceBetween = keyof (typeof theme.spacing) | 'reverse' | SpaceNegative;
@@ -79,13 +79,26 @@ type FontSize = keyof typeof theme.fontSize;
 type FontWeight = keyof typeof theme.fontWeight;
 type TextAlign = typeof typography.textAlign.values[number];
 type LineHeight = keyof typeof theme.lineHeight
+type LetterSpacing = keyof typeof theme.letterSpacing;
+type Colors =  string;
+
+
 type FontProps = FontFamily;
-type TextProps = FontSize;
+type TextProps = FontSize | TextAlign | Colors;
 
 export type TypographyProps = {
   font?: ResponsiveValue<FontProps>;
   fontWeight?: ResponsiveValue<FontWeight>;
-  text?: ResponsiveValue<TextProps>;
+
+  text?: ResponsiveValue<TextProps[]>;
+  fontSize?: ResponsiveValue<FontSize>;
   textAlign?: ResponsiveValue<TextAlign>;
+  textColor?: ResponsiveValue<Colors>;
+  color?: ResponsiveValue<Colors>;
+
   leading?: ResponsiveValue<LineHeight>;
+  lineHeight?: ResponsiveValue<LineHeight>;
+
+  tracking?: ResponsiveValue<LetterSpacing>;
+  letterSpacing?: ResponsiveValue<LetterSpacing>;
 }

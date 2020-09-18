@@ -9,5 +9,11 @@ export default {
   },
   leading: {
     key: 'leading'
+  },
+  tracking: {
+    key: 'tracking'
+  },
+  letterSpacing: {
+    key: 'tracking'
   }
 }
