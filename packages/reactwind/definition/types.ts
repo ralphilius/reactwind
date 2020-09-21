@@ -2,6 +2,7 @@ import { theme } from '../stubs/defaultConfig';
 import boxAlignment from './box-alignment';
 import spacing from './spacing';
 import typography from './typography';
+import backgrounds from './backgrounds';
 
 export type ResponsiveArray<T> = Array<T | null>
 export type ResponsiveObject<T> = { [P in Breakpoints]?: T }
@@ -119,4 +120,27 @@ export type TypographyProps = {
   textOpacity?: ResponsiveValue<Opacity>;
   align?: ResponsiveValue<VerticalAlign>;
   whitespace?: ResponsiveValue<Whitespace>;
+}
+
+// Backgrounds
+type BackgroundAttachment = typeof backgrounds.bg.values[number];
+type BackgroundClip = typeof backgrounds.bgClip.values[number];
+type BackgroundOpacity = Opacity;
+type BackgroundPosition = keyof typeof theme.backgroundPosition;
+type BackgroundRepeat = typeof backgrounds.bgRepeat.values[number];
+type BackgroundSize = keyof typeof theme.backgroundSize;
+type BackgroundImage = keyof typeof theme.backgroundImage;
+type BgProps = BackgroundAttachment | BackgroundPosition | BackgroundRepeat | BackgroundSize | BackgroundImage;
+
+export type BackgroundsProps = {
+  bg?: ResponsiveValue<BgProps[]>;
+  bgAttachment?: ResponsiveValue<BackgroundAttachment>;
+  bgClip?: ResponsiveValue<BackgroundClip>;
+  bgColor?: ResponsiveValue<Colors>;
+  bgOpacity?: ResponsiveValue<BackgroundOpacity>;
+  bgPosition?: ResponsiveValue<BackgroundPosition>;
+  bgRepeat?: ResponsiveValue<BackgroundRepeat>;
+  bgSize?: ResponsiveValue<BackgroundSize>;
+  bgImage?: ResponsiveValue<BackgroundImage>;
+  from?: ResponsiveValue<Colors>;
 }
