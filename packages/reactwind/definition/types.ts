@@ -10,6 +10,7 @@ export type ResponsiveValue<T> = T | ResponsiveArray<T> | ResponsiveObject<T>
 export type Breakpoints = keyof (typeof theme.screens) | 'base';
 export type Spacing = keyof (typeof theme.spacing) | 'auto';
 export type SpaceNegative = keyof (typeof spacing.negativeSpacing);
+type Opacity = keyof typeof theme.opacity;
 export type SpaceBetween = keyof (typeof theme.spacing) | 'reverse' | SpaceNegative;
 
 // Box Alignment
@@ -86,6 +87,9 @@ type ListStyleType = keyof typeof theme.listStyleType;
 type ListStylePosition = keyof typeof theme.listStylePosition;
 type ListProps = ListStyleType | ListStylePosition
 
+type VerticalAlign = typeof typography.align.values[number];
+type Whitespace = typeof typography.whitespace.values[number];
+
 type FontProps = FontFamily;
 type TextProps = FontSize | TextAlign;
 
@@ -108,4 +112,11 @@ export type TypographyProps = {
   list?: ResponsiveValue<ListProps[]>;
   listStyleType?: ResponsiveValue<ListStyleType>;
   listStylePosition?: ResponsiveValue<ListStylePosition>;
+
+  placeholder?: ResponsiveValue<Colors>
+  placeholderOpacity?: ResponsiveValue<Opacity>;
+
+  textOpacity?: ResponsiveValue<Opacity>;
+  align?: ResponsiveValue<VerticalAlign>;
+  whitespace?: ResponsiveValue<Whitespace>;
 }

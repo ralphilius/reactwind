@@ -24,5 +24,23 @@ export default {
   },
   listStylePosition: {
     key: 'list'
+  },
+  placeholder: {
+    key: 'placeholder'
+  },
+  placeholderOpacity: {
+    key: 'placeholder-opacity'
+  },
+  textOpacity: {
+    key: 'text-opacity'
+  },
+  align: {
+    key: 'align',
+    values: ['baseline', 'top', 'middle', 'bottom', 'text-top', 'text-bottom'] as const
+  },
+  whitespace: {
+    key: 'whitespace',
+    values: ['normal', 'no-wrap', 'pre', 'pre-line', 'pre-wrap'] as const
   }
+
 }
