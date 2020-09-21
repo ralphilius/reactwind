@@ -13,7 +13,7 @@ export default function propsToClassNames<T extends ReactwindProps>(props: T): [
       const classKey = definition[propName]['key'];
       if (hasResponsiveValue(propValues)) return getResponsiveClassNames(propValues, classKey)
       if (Array.isArray(propValues)) {
-        stringifyPropArray(propValues, classKey);
+        return stringifyPropArray(propValues, classKey);
       }
       return classKey.concat("-", propValues)
     })
@@ -22,6 +22,7 @@ export default function propsToClassNames<T extends ReactwindProps>(props: T): [
 
 function stringifyPropArray(propValues: any[], classKey: string) {
   return propValues.map((prop: string) => {
+    if(prop.length == 0) return classKey
     return classKey.concat("-", prop)
   }).join(" ");
 }
