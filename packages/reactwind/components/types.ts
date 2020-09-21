@@ -3,19 +3,21 @@ import {
   PaddingProps, MarginProps, 
   SizingProps, 
   SpaceBetweenProps,
-  TypographyProps
+  TypographyProps,
+  BackgroundsProps
 } from '../definition/types';
-import { ReactType } from 'react';
+import { ElementType } from 'react';
 
 export type ReactwindProps = 
   JustifyXProps & AlignXProps & PlaceXProps 
   & PaddingProps & MarginProps & SpaceBetweenProps 
   & SizingProps 
   & TypographyProps
+  & BackgroundsProps
   & AsProps & ClassnameProps & React.HTMLProps<HTMLImageElement | HTMLLinkElement>
 
 type AsProps = {
-  as?: ReactType
+  as?: ElementType
 };
 
 type ClassnameProps = {
