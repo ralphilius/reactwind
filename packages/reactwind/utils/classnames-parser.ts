@@ -2,19 +2,22 @@ import { ReactwindProps } from "../components/types";
 import definition from '../definition';
 
 let definitionKeys = Object.keys(definition);
-
+console.log("definitionKeys", definitionKeys)
 export default function propsToClassNames<T extends ReactwindProps>(props: T): [string, T] {
   const newProps: T = { ...props };
+
+console.log("Object.keys(props)", Object.keys(props))
   let classNames = Object.keys(props)
     .filter((propName: string) => definitionKeys.includes(propName))
     .map((propName: string) => {
       delete newProps[propName]
       let propValues = props[propName];
       const classKey = definition[propName]['key'];
+      if(typeof propValues == 'boolean') return classKey;
       if (hasResponsiveValue(propValues)) return getResponsiveClassNames(propValues, classKey)
       if (Array.isArray(propValues)) {
         return stringifyPropArray(propValues, classKey);
-      }
+      }      
       return classKey.concat("-", propValues)
     })
   return [classNames.join(" "), newProps];
@@ -70,7 +73,7 @@ function objectToClassnames(object): string {
 
 const responsiveSchema = ["base", "sm", "md", "lg", "xl"]
 function hasResponsiveValue(propValues: object | any[]) {
-  if (typeof propValues == 'string' || Array.isArray(propValues)) return false;
+  if (typeof propValues == 'string' || typeof propValues == 'boolean' || Array.isArray(propValues)) return false;
 
   //if (Array.isArray(propValues)) return propValues.length <= 5;
 
