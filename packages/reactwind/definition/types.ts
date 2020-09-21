@@ -3,10 +3,15 @@ import boxAlignment from './box-alignment';
 import spacing from './spacing';
 import typography from './typography';
 import backgrounds from './backgrounds';
+import borders from './borders';
 
 export type ResponsiveArray<T> = Array<T | null>
 export type ResponsiveObject<T> = { [P in Breakpoints]?: T }
 export type ResponsiveValue<T> = T | ResponsiveArray<T> | ResponsiveObject<T>
+
+type XSide = 'l' | 'r'
+type YSide = 't' | 'b'
+type Axis = 'x' | 'y'
 
 export type Breakpoints = keyof (typeof theme.screens) | 'base';
 export type Spacing = keyof (typeof theme.spacing) | 'auto';
@@ -149,4 +154,33 @@ export type BackgroundsProps = {
   bgSize?: ResponsiveValue<BackgroundSize>;
   bgImage?: ResponsiveValue<BackgroundImage>;
   from?: ResponsiveValue<Colors>;
+}
+
+// Borders
+type BorderSize = Exclude<keyof typeof theme.borderRadius, 'default'>;
+type BorderSide = `${XSide | YSide}-${BorderSize}` | `${YSide}${XSide}-${BorderSize}`;
+type BorderWidthValues = Exclude<keyof typeof theme.borderWidth, 'default'>;
+type BorderWidth = '' | BorderWidthValues | `${XSide}-${BorderWidthValues}` | `${YSide}-${BorderWidthValues}` | XSide | YSide ;
+type BorderStyle = typeof borders.borderStyle.values[number]
+
+
+type DivideWidth = Axis | `${Axis}-${BorderWidthValues}` | `${Axis}-reverse`
+
+type BProps = BorderWidth | Colors | BorderStyle;
+type DivideProps = DivideWidth | Colors | BorderStyle;
+export type BorderProps = {
+  rounded?: ResponsiveValue<'' | BorderSize | BorderSide>;
+  border?: ResponsiveValue<BProps>;
+  divide?: ResponsiveValue<DivideProps[]>
+
+  borderRadius?: ResponsiveValue<'' | BorderSize | BorderSide>;
+  borderWidth?: ResponsiveValue<BorderWidth>;
+  borderColor?: ResponsiveValue<Colors>;
+  borderOpacity?: ResponsiveValue<Opacity>;
+  borderStyle?: ResponsiveValue<BorderStyle>;
+
+  divideWidth?: ResponsiveValue<DivideWidth>;
+  divideColor?: ResponsiveValue<Colors>;
+  divideOpacity?: ResponsiveValue<Opacity>;
+  divideStyle?: ResponsiveValue<BorderStyle>;
 }

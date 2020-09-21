@@ -4,7 +4,8 @@ import {
   SizingProps, 
   SpaceBetweenProps,
   TypographyProps,
-  BackgroundsProps
+  BackgroundsProps,
+  BorderProps
 } from '../definition/types';
 import { ElementType } from 'react';
 
@@ -14,6 +15,7 @@ export type ReactwindProps =
   & SizingProps 
   & TypographyProps
   & BackgroundsProps
+  & BorderProps
   & AsProps & ClassnameProps & React.HTMLProps<HTMLImageElement | HTMLLinkElement>
 
 type AsProps = {
