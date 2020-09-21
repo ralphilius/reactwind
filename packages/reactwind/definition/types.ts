@@ -10,9 +10,15 @@ export type ResponsiveValue<T> = T | ResponsiveArray<T> | ResponsiveObject<T>
 
 export type Breakpoints = keyof (typeof theme.screens) | 'base';
 export type Spacing = keyof (typeof theme.spacing) | 'auto';
-export type SpaceNegative = keyof (typeof spacing.negativeSpacing);
+export type SpaceNegative = `-${Exclude<Spacing, 'auto'>}`;
 type Opacity = keyof typeof theme.opacity;
-export type SpaceBetween = keyof (typeof theme.spacing) | 'reverse' | SpaceNegative;
+type Colors = ShadedColors | 'black' | 'white' | 'transparent' | 'current';
+
+let shades = ['100', '200', '300', '400', '500', '600', '700', '800', '900'] as const;
+type colors = keyof typeof theme.colors;
+type colorsWithShades = Exclude<colors, 'transparent' | 'current' | 'black' | 'white'>
+type shades = typeof shades[number]
+type ShadedColors = `${colorsWithShades}-${shades}`
 
 // Box Alignment
 type JustifyContent = typeof boxAlignment.justifyContent.values[number];
@@ -44,6 +50,7 @@ export type PlaceXProps = {
 
 
 // Spacing
+type SpaceBetween = keyof (typeof theme.spacing) | 'reverse' | SpaceNegative;
 const paddingKeys = ['p', 'px', 'py', 'pt', 'pr', 'pb', 'pl'] as const;
 export type PaddingProps = {
   [key in typeof paddingKeys[number]]?: ResponsiveValue<Spacing>;
@@ -82,7 +89,6 @@ type FontWeight = keyof typeof theme.fontWeight;
 type TextAlign = typeof typography.textAlign.values[number];
 type LineHeight = keyof typeof theme.lineHeight
 type LetterSpacing = keyof typeof theme.letterSpacing;
-type Colors =  string;
 
 type ListStyleType = keyof typeof theme.listStyleType;
 type ListStylePosition = keyof typeof theme.listStylePosition;
@@ -92,7 +98,7 @@ type VerticalAlign = typeof typography.align.values[number];
 type Whitespace = typeof typography.whitespace.values[number];
 
 type FontProps = FontFamily;
-type TextProps = FontSize | TextAlign;
+type TextProps = FontSize | TextAlign | Colors;
 
 export type TypographyProps = {
   font?: ResponsiveValue<FontProps>;
@@ -130,7 +136,7 @@ type BackgroundPosition = keyof typeof theme.backgroundPosition;
 type BackgroundRepeat = typeof backgrounds.bgRepeat.values[number];
 type BackgroundSize = keyof typeof theme.backgroundSize;
 type BackgroundImage = keyof typeof theme.backgroundImage;
-type BgProps = BackgroundAttachment | BackgroundPosition | BackgroundRepeat | BackgroundSize | BackgroundImage;
+type BgProps = BackgroundAttachment | Colors | BackgroundPosition | BackgroundRepeat | BackgroundSize | BackgroundImage;
 
 export type BackgroundsProps = {
   bg?: ResponsiveValue<BgProps[]>;
