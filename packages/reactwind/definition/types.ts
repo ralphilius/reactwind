@@ -25,6 +25,22 @@ type colorsWithShades = Exclude<colors, 'transparent' | 'current' | 'black' | 'w
 type shades = typeof shades[number]
 type ShadedColors = `${colorsWithShades}-${shades}`
 
+// Grid
+type GridTemplateColumns = keyof typeof theme.gridTemplateColumns;
+type GridColumn = keyof typeof theme.gridColumn | `start-${keyof typeof theme.gridColumnStart}`| `end-${keyof typeof theme.gridColumnEnd}`;
+type GridTemplateRows = keyof typeof theme.gridTemplateRows;
+type GridRow = keyof typeof theme.gridRow | `start-${keyof typeof theme.gridRowStart}`| `end-${keyof typeof theme.gridRowEnd}`;
+type GridFlow = 'row' | 'col' | 'row-dense' | 'col-dense'
+type Gap = Spacing | `x-${Spacing}` | `y-${Spacing}`
+export type GridProps = {
+  gridCols?: ResponsiveValue<GridTemplateColumns>;
+  col?: ResponsiveValue<GridColumn>;
+  gridRows?: ResponsiveValue<GridTemplateRows>;
+  row?: ResponsiveValue<GridRow>;
+  gridFlow?: ResponsiveValue<GridFlow>;
+  gap?: ResponsiveValue<Gap>;
+}
+
 // Box Alignment
 type JustifyContent = typeof boxAlignment.justifyContent.values[number];
 type JustifyItems = typeof boxAlignment.justifyItems.values[number];

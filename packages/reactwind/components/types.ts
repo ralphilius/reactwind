@@ -5,12 +5,14 @@ import {
   SpaceBetweenProps,
   TypographyProps,
   BackgroundsProps,
-  BorderProps
+  BorderProps,
+  GridProps
 } from '../definition/types';
 import { ElementType } from 'react';
 
 export type ReactwindProps = 
-  JustifyXProps & AlignXProps & PlaceXProps 
+  GridProps
+  & JustifyXProps & AlignXProps & PlaceXProps 
   & PaddingProps & MarginProps & SpaceBetweenProps 
   & SizingProps 
   & TypographyProps
