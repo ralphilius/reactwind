@@ -6,6 +6,7 @@ import backgrounds from './backgrounds';
 import borders from './borders';
 import grid from './grid';
 import flexbox from './flexbox';
+import layout from './layout'
 
 export default {
   ...boxAlignment,
@@ -15,5 +16,6 @@ export default {
   ...backgrounds,
   ...borders,
   ...grid,
-  ...flexbox
+  ...flexbox,
+  ...layout
 }

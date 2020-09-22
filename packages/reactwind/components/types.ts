@@ -7,12 +7,14 @@ import {
   BackgroundsProps,
   BorderProps,
   GridProps,
-  FlexboxProps
+  FlexboxProps,
+  LayoutProps
 } from '../definition/types';
 import { ElementType } from 'react';
 
 export type ReactwindProps = 
-    FlexboxProps
+    LayoutProps
+  & FlexboxProps
   & GridProps
   & JustifyXProps & AlignXProps & PlaceXProps 
   & PaddingProps & MarginProps & SpaceBetweenProps 

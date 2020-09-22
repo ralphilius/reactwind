@@ -5,13 +5,16 @@ import typography from './typography';
 import backgrounds from './backgrounds';
 import borders from './borders';
 import flexbox from './flexbox';
+import layout, { display, float, position } from './layout';
 
 export type ResponsiveArray<T> = Array<T | null>
 export type ResponsiveObject<T> = { [P in Breakpoints]?: T }
 export type ResponsiveValue<T> = T | ResponsiveArray<T> | ResponsiveObject<T>
 
 type XSide = 'l' | 'r'
+type XSideFull= 'left' | 'right'
 type YSide = 't' | 'b'
+type YSideFull = 'top' | 'bottom'
 type Axis = 'x' | 'y'
 
 export type Breakpoints = keyof (typeof theme.screens) | 'base';
@@ -25,6 +28,50 @@ type colors = keyof typeof theme.colors;
 type colorsWithShades = Exclude<colors, 'transparent' | 'current' | 'black' | 'white'>
 type shades = typeof shades[number]
 type ShadedColors = `${colorsWithShades}-${shades}`
+
+// Layout
+type BoxSizing = typeof layout.box.values[number];
+type Display = keyof typeof display
+type DisplayProps = {
+  [key in Display]: boolean
+}
+type Float = typeof float.float.values[number];
+type Clear = typeof layout.clear.values[number];
+type ObjectFit = "contain" | "cover" | "fill" | "none" | "scale-down"
+type ObjectPosition = YSideFull | XSideFull | `${XSideFull}-${YSideFull}` | 'center'
+type ObjectProps = ObjectFit | ObjectPosition;
+type Overflow = typeof layout.overflow.values[number];
+type OverflowProps = Overflow | `${Axis}-${Overflow}`
+type Overscroll = "none" | "auto" | "contain";
+type OverscrollProps = Overscroll | `${Axis}-${Overscroll}`
+type Position = keyof typeof position
+type PositionProps = {
+  [key in Position]: boolean
+}
+type InsetProps = `${0 | 'auto'}` | `${Axis}-${0|'auto'}`
+type TRBL = {
+  [key in XSideFull]: `${0 | 'auto'}`
+} | {
+  [key in YSideFull]: `${0 | 'auto'}`
+}
+type ZProps = typeof theme.zIndex;
+export type LayoutProps = {
+  container?: ResponsiveValue<boolean>;
+  box?: ResponsiveValue<BoxSizing>;
+  float?: ResponsiveValue<Float>;
+  clearfix?: ResponsiveValue<boolean>;
+  clear?: ResponsiveValue<Clear>;
+  object?: ResponsiveValue<ObjectProps[]>;
+  objectFit?: ResponsiveValue<ObjectFit>;
+  objectPosition?: ResponsiveValue<ObjectPosition>;
+  overflow?: ResponsiveValue<OverflowProps>;
+  scrolling?: ResponsiveValue<'touch'|'auto'>;
+  overscroll?: ResponsiveValue<OverscrollProps>;
+  inset?: ResponsiveValue<InsetProps>;
+  visible?: ResponsiveValue<boolean>;
+  invisible?: ResponsiveValue<boolean>;
+  z?: ResponsiveValue<ZProps>;
+} | DisplayProps | PositionProps | TRBL
 
 // Flexbox
 type Flex = keyof typeof theme.flex;
