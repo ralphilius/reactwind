@@ -5,6 +5,7 @@ import typography from './typography'
 import backgrounds from './backgrounds';
 import borders from './borders';
 import grid from './grid';
+import flexbox from './flexbox';
 
 export default {
   ...boxAlignment,
@@ -13,5 +14,6 @@ export default {
   ...typography,
   ...backgrounds,
   ...borders,
-  ...grid
+  ...grid,
+  ...flexbox
 }

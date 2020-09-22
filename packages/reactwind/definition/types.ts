@@ -4,6 +4,7 @@ import spacing from './spacing';
 import typography from './typography';
 import backgrounds from './backgrounds';
 import borders from './borders';
+import flexbox from './flexbox';
 
 export type ResponsiveArray<T> = Array<T | null>
 export type ResponsiveObject<T> = { [P in Breakpoints]?: T }
@@ -24,6 +25,23 @@ type colors = keyof typeof theme.colors;
 type colorsWithShades = Exclude<colors, 'transparent' | 'current' | 'black' | 'white'>
 type shades = typeof shades[number]
 type ShadedColors = `${colorsWithShades}-${shades}`
+
+// Flexbox
+type Flex = keyof typeof theme.flex;
+type FlexDirection = typeof flexbox.flexDirection.values[number];
+type FlexWrap = typeof flexbox.flexWrap.values[number];
+type FlexGrow = typeof flexbox.flexGrow.values[number];
+type FlexShrink = typeof flexbox.flexShrink.values[number];
+type Order = keyof typeof theme.order;
+type FlexProps = Flex | FlexDirection | FlexWrap | 'grow' | 'grow-0' | 'shrink' | 'shrink-0';
+export type FlexboxProps = {
+  flex?: ResponsiveValue<FlexProps[]>;
+  flexDirection?: ResponsiveValue<FlexDirection>;
+  flexWrap?: ResponsiveValue<FlexWrap>;
+  flexGrow?: ResponsiveValue<FlexGrow>;
+  flexShrink?: ResponsiveValue<FlexShrink>;
+  order?: ResponsiveValue<Order>;
+}
 
 // Grid
 type GridTemplateColumns = keyof typeof theme.gridTemplateColumns;
