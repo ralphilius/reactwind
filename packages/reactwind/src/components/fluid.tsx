@@ -1,3 +1,4 @@
+import React from 'react';
 import { ReactwindProps } from "./types";
 import propsToClassNames from "../utils/classnames-parser";
 

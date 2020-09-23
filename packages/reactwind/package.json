@@ -1,9 +1,12 @@
 {
-  "name": "reactwind",
+  "name": "@reactwind/core",
   "version": "0.0.0",
-  "description": "React wrapper components for TailwindCSS",
-  "main": "index.js",
+  "description": "React wrapper with utilities props for TailwindCSS",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "jsnext:main": "dist/index.es.js",
   "scripts": {
+    "build": "tsc -v && tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,6 +25,7 @@
   "homepage": "https://github.com/ralphilius/reactwind#readme",
   "dependencies": {
     "@types/react": "^16.9.49",
+    "csstype": "^3.0.3",
     "typescript": "^4.1.0-beta"
   }
 }

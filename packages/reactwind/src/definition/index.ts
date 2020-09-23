@@ -8,7 +8,12 @@ import grid from './grid';
 import flexbox from './flexbox';
 import layout from './layout'
 
-export default {
+const definition: {
+  [key: string]: { 
+    key: string, 
+    values?: readonly string[] 
+  }
+} = {
   ...boxAlignment,
   ...spacing,
   ...sizing,
@@ -19,3 +24,5 @@ export default {
   ...flexbox,
   ...layout
 }
+
+export default definition;

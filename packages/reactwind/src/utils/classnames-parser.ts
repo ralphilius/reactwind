@@ -1,36 +1,37 @@
 import { ReactwindProps } from "../components/types";
 import definition from '../definition';
+import omit from "./omit";
+import pluck from "./pluck";
 
 let definitionKeys = Object.keys(definition);
-console.log("definitionKeys", definitionKeys)
 export default function propsToClassNames<T extends ReactwindProps>(props: T): [string, T] {
   const newProps: T = { ...props };
-
-console.log("Object.keys(props)", Object.keys(props))
   let classNames = Object.keys(props)
     .filter((propName: string) => definitionKeys.includes(propName))
     .map((propName: string) => {
-      delete newProps[propName]
-      let propValues = props[propName];
+      omit(newProps, [propName as keyof T])
+      let propValues: boolean | string | any[] | {[k: string]: string} = pluck(props, [propName as keyof T]);
       const classKey = definition[propName]['key'];
-      if(typeof propValues == 'boolean') return classKey;
-      if (hasResponsiveValue(propValues)) return getResponsiveClassNames(propValues, classKey)
+      if (typeof propValues == 'boolean') return classKey;
       if (Array.isArray(propValues)) {
         return stringifyPropArray(propValues, classKey);
-      }      
-      return classKey.concat("-", propValues)
+      }
+      if (hasResponsiveValue(propValues)) return getResponsiveClassNames(propValues, classKey)
+      if (typeof propValues == 'string') return classKey != '' ? classKey.concat("-", propValues) : propValues;
+      return '';
+
     })
   return [classNames.join(" "), newProps];
 }
 
 function stringifyPropArray(propValues: any[], classKey: string) {
   return propValues.map((prop: string) => {
-    if(prop.length == 0) return classKey
+    if (prop.length == 0) return classKey
     return classKey.concat("-", prop)
   }).join(" ");
 }
 
-function getResponsiveClassNames(propValues: object | any[], classKey: string) {
+function getResponsiveClassNames(propValues: {[k: string]: string|string[]}, classKey: string) {
   //let object = {};
   // if (Array.isArray(propValues)) {
   //   if (propValues.length > 5) return '';
@@ -44,24 +45,24 @@ function getResponsiveClassNames(propValues: object | any[], classKey: string) {
   //     });
   //   return objectToClassnames(object);
   // }  
-  
+
   let classnames = '';
-  if (isValidObject(propValues, responsiveSchema)) {
+  if (typeof propValues == 'object' && isValidObject(propValues, responsiveSchema)) {
     Object.keys(propValues)
-      .forEach(propKey => {
+      .forEach((propKey: string) => {
         let breakpoint = propKey == responsiveSchema[0] ? '' : `${propKey}:`
         if (Array.isArray(propValues[propKey])) {
-          classnames += stringifyPropArray(propValues[propKey], `${breakpoint}${classKey}`)
+          classnames += stringifyPropArray(propValues[propKey] as string[], `${breakpoint}${classKey}`)
         } else {
           classnames += `${breakpoint}${classKey}-${propValues[propKey]}`
         }
       })
-      
+
     return classnames;
   }
 }
 
-function objectToClassnames(object): string {
+function objectToClassnames(object: { [key: string]: string }): string {
   let classnames = '';
   Object.keys(object).forEach(key => {
     let breakpoint = key == responsiveSchema[0] ? '' : `${key}:`
@@ -72,7 +73,7 @@ function objectToClassnames(object): string {
 }
 
 const responsiveSchema = ["base", "sm", "md", "lg", "xl"]
-function hasResponsiveValue(propValues: object | any[]) {
+function hasResponsiveValue(propValues: boolean | string | object | any[]) {
   if (typeof propValues == 'string' || typeof propValues == 'boolean' || Array.isArray(propValues)) return false;
 
   //if (Array.isArray(propValues)) return propValues.length <= 5;

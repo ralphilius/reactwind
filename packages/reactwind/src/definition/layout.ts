@@ -47,6 +47,7 @@ export default {
     values: ['border', 'content'] as const
   },
   ...display,
+  display: { key: '' },
   ...float,
   clear: {
     key: 'clear',

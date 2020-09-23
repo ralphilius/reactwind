@@ -17,17 +17,15 @@ type YSide = 't' | 'b'
 type YSideFull = 'top' | 'bottom'
 type Axis = 'x' | 'y'
 
+export type ColorsWithShades = Exclude<keyof typeof theme.colors, 'transparent' | 'current' | 'black' | 'white'>
+export type Shades = '100'|'200'|'300'|'400'|'500'|'600'|'700'|'800'| '900'
+type ShadedColors = `${ColorsWithShades}-${Shades}`
+
 export type Breakpoints = keyof (typeof theme.screens) | 'base';
 export type Spacing = keyof (typeof theme.spacing) | 'auto';
 export type SpaceNegative = `-${Exclude<Spacing, 'auto'>}`;
 type Opacity = keyof typeof theme.opacity;
 type Colors = ShadedColors | 'black' | 'white' | 'transparent' | 'current';
-
-let shades = ['100', '200', '300', '400', '500', '600', '700', '800', '900'] as const;
-type colors = keyof typeof theme.colors;
-type colorsWithShades = Exclude<colors, 'transparent' | 'current' | 'black' | 'white'>
-type shades = typeof shades[number]
-type ShadedColors = `${colorsWithShades}-${shades}`
 
 // Layout
 type BoxSizing = typeof layout.box.values[number];
@@ -58,6 +56,7 @@ type ZProps = typeof theme.zIndex;
 export type LayoutProps = {
   container?: ResponsiveValue<boolean>;
   box?: ResponsiveValue<BoxSizing>;
+  display?: ResponsiveValue<keyof DisplayProps>;
   float?: ResponsiveValue<Float>;
   clearfix?: ResponsiveValue<boolean>;
   clear?: ResponsiveValue<Clear>;
